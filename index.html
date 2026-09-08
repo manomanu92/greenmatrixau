@@ -632,12 +632,42 @@
   });
 
   const contactForm = document.getElementById('contactForm');
-  const formBtn = document.getElementById('form-btn');
+const formBtn = document.getElementById('form-btn');
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyXDQH4mDx7IZ3cTYquUG24oi-bcG3VdE50v6CSHhWXifdEwd2GSevmmJdxMczw-kI3gA/exec";
 
-  if (contactForm && formBtn) {
-    contactForm.addEventListener('submit', function() {
-      formBtn.textContent = 'Sending...';
-      formBtn.disabled = true;
+if (contactForm && formBtn) {
+  const originalBtnText = formBtn.textContent;
+
+  contactForm.addEventListener('submit', function (e) {
+    e.preventDefault(); // stop normal page reload/navigation
+
+    formBtn.textContent = 'Sending...';
+    formBtn.disabled = true;
+
+    const data = new FormData(contactForm);
+
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: data
+    })
+      .then(() => {
+        formBtn.textContent = 'Message sent ✓';
+        contactForm.reset();
+        setTimeout(() => {
+          formBtn.textContent = originalBtnText;
+          formBtn.disabled = false;
+        }, 3000);
+      })
+      .catch(() => {
+        formBtn.textContent = 'Something went wrong';
+        formBtn.disabled = false;
+        setTimeout(() => {
+          formBtn.textContent = originalBtnText;
+        }, 3000);
+      });
+  });
+}
     });
   }
 </script>
