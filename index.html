@@ -237,30 +237,48 @@
   .s5-badge-link:hover { background: var(--green-3); color: var(--white); border-color: var(--green-3); }
   .prod-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3px; }
   .pcard {
-    background: var(--light-bg); padding: 0;
-    border-top: 4px solid transparent; transition: border-color .3s, background .3s, box-shadow .3s; cursor: pointer;
-    border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    overflow: hidden;
-    display: flex; flex-direction: column;
+    background: #ffffff; padding: 0;
+    border-top: 4px solid transparent; border: 1px solid rgba(17,17,17,0.06);
+    transition: border-color .3s, background .3s, box-shadow .3s, transform .25s ease; cursor: pointer;
+    border-radius: 12px; box-shadow: 0 2px 10px rgba(16,16,16,0.04);
+    overflow: hidden; display: flex; flex-direction: column;
   }
   .pcard-img {
-    width: 100%; height: 240px; background: linear-gradient(135deg, #f3f5f2, #edf3ee); display: block; align-items: center; justify-content: center; overflow: hidden;
+    width: 100%; height: 260px; background: linear-gradient(135deg, #f4f7f1, #edf3ee); display: flex; align-items: center; justify-content: center; overflow: hidden;
     text-decoration: none; line-height: 0; transition: transform .3s ease, background .3s ease; border-bottom: 1px solid rgba(17,17,17,0.06);
+    padding: 18px;
   }
   .pcard-img img, .pcard-img svg {
-    display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; padding: 18px; background: rgba(255,255,255,0.18);
-    transition: transform .35s ease, filter .35s ease;
+    display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; padding: 14px 12px; background: rgba(255,255,255,0.28);
+    border-radius: 10px; transition: transform .35s ease, filter .35s ease;
   }
   .pcard:hover .pcard-img img, .pcard:hover .pcard-img svg { transform: scale(1.04); filter: saturate(1.08); }
-  .pcard-content { padding: 24px 28px; flex: 1; display: flex; flex-direction: column; }
-  .pcard:hover { border-top-color: var(--gold); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
-  .pcard:hover .pcard-img { background: var(--white); }
+  .pcard-content { padding: 24px 24px 20px; flex: 1; display: flex; flex-direction: column; }
+  .pcard-content h3 {
+    font-family: 'Bebas Neue', sans-serif; margin: 0 0 10px; font-size: 28px; letter-spacing: 0.04em; line-height: 1;
+    color: #111111; text-transform: uppercase;
+  }
+  .pcard-content p {
+    font-size: 14px; line-height: 1.7; color: #2f2f2f; margin-bottom: 16px;
+  }
+  .pcard:hover { border-color: rgba(30, 165, 75, 0.28); transform: translateY(-4px); box-shadow: 0 14px 30px rgba(0,0,0,0.08); }
+  .pcard:hover .pcard-img { background: linear-gradient(135deg, #ffffff, #f3f7f2); }
   .pnum {
     font-family: 'Bebas Neue', sans-serif; font-size: 36px;
-    color: rgba(0, 78, 152, 0.08); line-height: 1; margin-bottom: 6px;
+    color: rgba(17,17,17,0.08); line-height: 1; margin-bottom: 6px;
     transition: color .3s;
   }
-  .pcard:hover .pnum { color: rgba(255, 215, 0, 0.15); }
+  .pcard:hover .pnum { color: rgba(30, 165, 75, 0.18); }
+  .ptags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: auto; margin-bottom: 18px; }
+  .tag {
+    display: inline-block; padding: 6px 8px; border-radius: 999px; background: rgba(30, 165, 75, 0.08); color: #0f2d1b;
+    font-size: 10px; line-height: 1; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 700;
+  }
+  .plink {
+    display: inline-flex; align-items: center; gap: 8px; margin-top: auto; color: var(--green-3); text-decoration: none;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .plink:hover { color: var(--green-4); }
   .pcard h3 {
     font-family: 'Bebas Neue', sans-serif; font-size: 22px;
     letter-spacing: 0.04em; color: #111111; margin-bottom: 8px;
@@ -632,42 +650,12 @@
   });
 
   const contactForm = document.getElementById('contactForm');
-const formBtn = document.getElementById('form-btn');
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyXDQH4mDx7IZ3cTYquUG24oi-bcG3VdE50v6CSHhWXifdEwd2GSevmmJdxMczw-kI3gA/exec";
+  const formBtn = document.getElementById('form-btn');
 
-if (contactForm && formBtn) {
-  const originalBtnText = formBtn.textContent;
-
-  contactForm.addEventListener('submit', function (e) {
-    e.preventDefault(); // stop normal page reload/navigation
-
-    formBtn.textContent = 'Sending...';
-    formBtn.disabled = true;
-
-    const data = new FormData(contactForm);
-
-    fetch(SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      body: data
-    })
-      .then(() => {
-        formBtn.textContent = 'Message sent ✓';
-        contactForm.reset();
-        setTimeout(() => {
-          formBtn.textContent = originalBtnText;
-          formBtn.disabled = false;
-        }, 3000);
-      })
-      .catch(() => {
-        formBtn.textContent = 'Something went wrong';
-        formBtn.disabled = false;
-        setTimeout(() => {
-          formBtn.textContent = originalBtnText;
-        }, 3000);
-      });
-  });
-}
+  if (contactForm && formBtn) {
+    contactForm.addEventListener('submit', function() {
+      formBtn.textContent = 'Sending...';
+      formBtn.disabled = true;
     });
   }
 </script>
