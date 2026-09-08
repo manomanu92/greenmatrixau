@@ -40,17 +40,9 @@
     font-size: 12px; font-weight: 300;
     border-bottom: 1px solid var(--light-gray);
   }
-  .topbar-l { display: flex; gap: 24px; align-items: center; }
+  .topbar-l { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
   .topbar-l a { color: #111111; text-decoration: none; transition: color .2s; font-weight: 500; }
   .topbar-l a:hover { color: var(--green-3); }
-  .topbar-r { display: flex; gap: 8px; }
-  .soc-btn {
-    width: 26px; height: 26px; border: 1.5px solid var(--light-gray);
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    color: #111111; font-size: 10px; text-decoration: none; transition: all .2s;
-  }
-  .soc-btn:hover { background: var(--green-3); border-color: var(--green-3); color: var(--white); }
-
   /* NAV */
   nav {
     position: sticky; top: 0; z-index: 100;
@@ -59,11 +51,11 @@
     border-bottom: 4px solid var(--green-3);
     padding: 0 48px;
     display: flex; align-items: center; justify-content: space-between;
-    height: 80px;
+    height: 92px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   }
   .nav-logo { display: flex; align-items: center; }
-  .nav-logo img { height: 56px; object-fit: contain; }
+  .nav-logo img { height: 72px; object-fit: contain; }
   .nav-links { display: flex; gap: 36px; list-style: none; }
   .nav-links a {
     font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
@@ -385,26 +377,23 @@
   .form-submit:hover { background: var(--red-lt); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(211, 47, 47, 0.4); }
 
   /* FOOTER */
-  footer { background: #001f3f; padding: 70px 80px 36px; border-top: 4px solid var(--red); }
+  footer { background: #001f3f; padding: 76px 80px 28px; border-top: 4px solid var(--red); }
   .footer-grid {
-    display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 52px;
-    padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 28px;
+    display: grid; grid-template-columns: 1.55fr 0.9fr 1fr 1.15fr; gap: 64px;
+    padding-bottom: 52px; border-bottom: 1px solid rgba(255,255,255,0.14); margin-bottom: 22px;
   }
-  .fb img { height: 52px; margin-bottom: 16px; object-fit: contain; }
-  .fb p { font-size: 13px; color: rgba(255,255,255,0.9); line-height: 1.75; font-weight: 400; margin-bottom: 20px; }
-  .fb-soc { display: flex; gap: 8px; }
-  .fb-soc a {
-    width: 32px; height: 32px; border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    color: rgba(255,255,255,0.9); text-decoration: none; font-size: 12px; transition: all .2s;
-  }
-  .fb-soc a:hover { background: var(--red); border-color: var(--red); color: var(--white); }
-  .fc h5 { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.1em; color: var(--white); margin-bottom: 20px; }
-  .fc ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
-  .fc ul li a { font-size: 13px; color: rgba(255,255,255,0.9); text-decoration: none; font-weight: 400; transition: color .2s; }
-  .fc ul li a:hover { color: var(--gold); }
-  .fc p { font-size: 13px; color: rgba(255,255,255,0.9); line-height: 1.7; font-weight: 400; margin-bottom: 8px; }
-  .footer-bot { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: rgba(255,255,255,0.72); }
+  .fb img { height: 52px; margin-bottom: 18px; object-fit: contain; }
+  .fb p { max-width: 290px; font-size: 13px; color: rgba(255,255,255,0.78); line-height: 1.8; font-weight: 400; margin: 0; }
+  .fc h5 { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 0.12em; color: var(--gold); margin: 2px 0 22px; }
+  .fc ul { list-style: none; display: flex; flex-direction: column; gap: 13px; margin: 0; padding: 0; }
+  .fc ul li a { font-size: 13px; color: rgba(255,255,255,0.86); text-decoration: none; font-weight: 400; transition: color .2s, padding-left .2s; }
+  .fc ul li a:hover { color: var(--gold); padding-left: 4px; }
+  .fc p { display: flex; align-items: flex-start; gap: 9px; font-size: 13px; color: rgba(255,255,255,0.82); line-height: 1.65; font-weight: 400; margin: 0 0 13px; }
+  .fc p:last-child { margin-bottom: 0; }
+  .fc p:first-of-type { margin-top: 1px; }
+  .fc p a { color: inherit !important; transition: color .2s; }
+  .fc p a:hover { color: var(--gold) !important; }
+  .footer-bot { display: flex; justify-content: space-between; align-items: center; font-size: 11px; letter-spacing: 0.02em; color: rgba(255,255,255,0.58); }
 
   /* ANIMATIONS */
   .fade-up { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
@@ -417,7 +406,7 @@
     .about-grid, .contact-grid, .s5-grid { grid-template-columns: 1fr; gap: 44px; }
     .prod-grid { grid-template-columns: 1fr 1fr; }
     .why-grid { grid-template-columns: repeat(3,1fr); }
-    footer { padding: 56px 36px 28px; }
+    footer { padding: 56px 36px 24px; }
     .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
     nav, .topbar { padding: 0 24px; }
     .hero-left { padding: 56px 36px 90px; }
@@ -426,6 +415,7 @@
   @media (max-width: 640px) {
     .prod-grid, .why-grid, .cards-2x2, .frow { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr; }
+    .footer-bot { align-items: flex-start; flex-direction: column; gap: 8px; }
     .topbar { display: none; }
     .hero-stats { gap: 22px; }
   }
@@ -436,20 +426,17 @@
 <!-- TOP BAR -->
 <div class="topbar">
   <div class="topbar-l">
+    <span>☎ <a href="tel:+61370469639">+61 3 7046 9639</a></span>
+    <span>◉ <a href="https://wa.me/61370469639?text=Hello%20Green%20Matrix%20Solar%2C%20I%20would%20like%20to%20enquire%20about%20a%20solar%20solution." target="_blank" rel="noopener noreferrer">WhatsApp</a></span>
     <span>✉ <a href="mailto:info@greenmatrixsolar.au">info@greenmatrixsolar.au</a></span>
     <span>📍 Australia</span>
-  </div>
-  <div class="topbar-r">
-    <a class="soc-btn" href="https://www.instagram.com/greenmatrix86/" target="_blank">IG</a>
-    <a class="soc-btn" href="#">in</a>
-    <a class="soc-btn" href="#">fb</a>
   </div>
 </div>
 
 <!-- NAV -->
 <nav>
   <div class="nav-logo" aria-label="Green Matrix Solar Pty Ltd logo">
-    <img src="logo.jpg" alt="Green Matrix Solar Pty Ltd" style="height: 56px; object-fit: contain; display:block;"/>
+    <img src="logo.jpg" alt="Green Matrix Solar Pty Ltd" style="height: 72px; object-fit: contain; display:block;"/>
   </div>
   <ul class="nav-links">
     <li><a href="#home">Home</a></li>
@@ -602,31 +589,24 @@
     <div class="fb">
       <img src="logo.jpg" alt="Green Matrix Solar Pty Ltd" style="height: 58px; object-fit: contain; display:block; margin-bottom:16px;"/>
       <p>Green Matrix Solar Pty Ltd — your trusted solar component partner for projects across Australia.</p>
-      <div class="fb-soc">
-        <a href="https://www.instagram.com/greenmatrix86/" target="_blank">IG</a>
-        <a href="#">in</a>
-        <a href="#">fb</a>
-        <a href="#">tw</a>
-      </div>
     </div>
-    <div class="fc"><h5>Navigation</h5><ul>
+    <div class="fc"><h5>Explore</h5><ul>
       <li><a href="#home">Home</a></li>
       <li><a href="#about">About Us</a></li>
       <li><a href="#products">Products</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul></div>
-    <div class="fc"><h5>Products</h5><ul>
+    <div class="fc"><h5>Product Range</h5><ul>
       <li><a href="#">EdgeGrab</a></li>
       <li><a href="#">MidGrab</a></li>
       <li><a href="#">S-5-V™ & Mini</a></li>
       <li><a href="#">Protea™ Bracket</a></li>
       <li><a href="#">WindClamp™</a></li>
-      <li><a href="https://www.s-5.com/how-to-buy/?regionId=5f64e83a1ff06d000afd4861" target="_blank">S-5! Store ↗</a></li>
     </ul></div>
-    <div class="fc"><h5>Contact</h5>
-      <p><a href="https://wa.me/61370469639?text=Hello%20Green%20Matrix%20Solar%2C%20I%20would%20like%20to%20enquire%20about%20a%20solar%20solution." target="_blank" rel="noopener noreferrer" style="color:var(--muted);text-decoration:none">💬 +61 3 7046 9639</a></p>
-      <p>✉ <a href="mailto:info@greenmatrixsolar.au" style="color:var(--muted);text-decoration:none">info@greenmatrixsolar.au</a></p>
-      <p>📍 Australia</p>
+    <div class="fc"><h5>Talk To Us</h5>
+      <p><span aria-hidden="true">💬</span><a href="https://wa.me/61370469639?text=Hello%20Green%20Matrix%20Solar%2C%20I%20would%20like%20to%20enquire%20about%20a%20solar%20solution." target="_blank" rel="noopener noreferrer">+61 3 7046 9639</a></p>
+      <p><span aria-hidden="true">✉</span><a href="mailto:info@greenmatrixsolar.au">info@greenmatrixsolar.au</a></p>
+      <p><span aria-hidden="true">📍</span><span>Australia</span></p>
     </div>
   </div>
   <div class="footer-bot">
